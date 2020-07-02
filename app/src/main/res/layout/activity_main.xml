@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+    <variable
+        name="tapGame"
+        type="com.example.tapcolor.MainViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:background="@drawable/rectangle_box"
+           android:text="@={tapGame.tapCount}"
+           android:textColor="@android:color/black"
+           android:textSize="14sp"
+           android:layout_marginStart="@dimen/low_margin"
+           android:layout_marginEnd="@dimen/low_margin"
+           app:layout_constraintBottom_toTopOf="@id/layout_colors"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           android:layout_marginBottom="@dimen/low_margin"
+           android:padding="@dimen/uni_padding"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_colors"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView_orange"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imageView_blue"
+                android:background="@drawable/square_orange"
+                android:layout_marginStart="@dimen/small_margin"
+                android:onClick="@{() -> tapGame.onOrangeClick()}"
+                android:contentDescription="@null"/>
+
+            <ImageView
+                android:id="@+id/imageView_blue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView_orange"
+                android:background="@drawable/square_blue"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:onClick="@{() -> tapGame.onBlueClick()}"
+                android:contentDescription="@null"/>
+
+            <ImageView
+                android:id="@+id/imageView_yellow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView_orange"
+                app:layout_constraintEnd_toStartOf="@id/imageView_blue"
+                android:background="@drawable/square_yellow"
+                android:layout_marginStart="@dimen/small_margin"
+                android:onClick="@{() -> tapGame.onYellowClick()}"
+                android:contentDescription="@null"/>
+
+            <ImageView
+                android:id="@+id/imageView_green"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView_blue"
+                app:layout_constraintStart_toEndOf="@id/imageView_orange"
+                android:background="@drawable/square_green"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:onClick="@{() -> tapGame.onGreenClick()}"
+                android:contentDescription="@null"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

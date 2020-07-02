@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Tap Out Grey</string>
+
+    <string name="game_over">GAME OVER</string>
+    <string name="restart">Restart</string>
+    <string name="score">Your Score is : </string>
+</resources>
