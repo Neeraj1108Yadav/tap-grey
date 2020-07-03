@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showDialog(TapGameModel tapGameModel){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setCancelable(false);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setCancelable(true);
         alertDialog.setTitle(getResources().getString(R.string.game_over));
         alertDialog.setMessage(getResources().getString(R.string.score)+" "+String.valueOf(tapGameModel.getTapCount()));
 
@@ -80,9 +80,10 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
+                dialogInterface.cancel();
             }
         });
+
         final AlertDialog dialog = alertDialog.create();
         dialog.show();
     }

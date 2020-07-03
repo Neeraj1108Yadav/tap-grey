@@ -12,6 +12,7 @@ public class MainViewModel extends ObservableViewModel {
 
     public String tapCount;
     private int count;
+    private int newPosition=0,oldPosition=0;
 
     private Random random = new Random();
     private MutableLiveData<TapGameModel> colorBox = new MutableLiveData<>();
@@ -39,12 +40,16 @@ public class MainViewModel extends ObservableViewModel {
                 if(tapGameModel.isTapped()){
                     switch (generateRandomNumber()){
                         case 1: setColorValues(true,false,false,false);
+                            oldPosition = newPosition;
                             break;
                         case 2: setColorValues(false,true,false,false);
+                            oldPosition = newPosition;
                             break;
                         case 3: setColorValues(false,false,true,false);
+                            oldPosition = newPosition;
                             break;
                         case 4: setColorValues(false,false,false,true);
+                            oldPosition = newPosition;
                             break;
                     }
                 }else{
@@ -105,7 +110,25 @@ public class MainViewModel extends ObservableViewModel {
         tapGameModel.setTapCount(count);
     }
     private int generateRandomNumber() {
-        return random.nextInt(4) + 1;
+        newPosition =  random.nextInt(4) + 1;
+        if(newPosition == oldPosition){
+            switch (newPosition)
+            {
+                case 1:
+                    newPosition = newPosition + 1;
+                    break;
+                case 2:
+                    newPosition = newPosition - 1;
+                    break;
+                case 3:
+                    newPosition = newPosition + 1 ;
+                    break;
+                case 4:
+                    newPosition = newPosition -1 ;
+                    break;
+            }
+        }
+        return  newPosition;
     }
 
     private void setColorValues(boolean isOrange,boolean isBlue,boolean isYellow,boolean isGreen){
@@ -118,8 +141,8 @@ public class MainViewModel extends ObservableViewModel {
     }
 
     private void onGameOver(){
+        score.postValue(tapGameModel);
         timer.cancel();
         setColorValues(false,false,false,false);
-        score.postValue(tapGameModel);
     }
 }
